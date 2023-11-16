@@ -1,9 +1,14 @@
-﻿namespace Domain.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Models;
+
 
 public class Todo
 {
+    [Key]
     public int Id { get; set; }
     public User Owner { get; }
+    [MaxLength(50)]
     public string Title { get; }
 
     public bool IsCompleted { get; set; }
@@ -13,4 +18,5 @@ public class Todo
         Owner = owner;
         Title = title;
     }
+    private Todo(){}
 }

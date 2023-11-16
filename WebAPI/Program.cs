@@ -1,6 +1,9 @@
+
+
 using Application.DaoInterfaces;
 using Application.Logic;
 using Application.LogicInterfaces;
+using EFCDataAcces;
 using FileData;
 using FileData.DAOs;
 
@@ -14,12 +17,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<FileContext>();
-builder.Services.AddScoped<IUserDao, UserFileDao>();
+builder.Services.AddScoped<IUserDao, UserEfcDao2>();
 builder.Services.AddScoped<IUserLogic, UserLogic>();
-
-builder.Services.AddScoped<ITodoDao, TodoFileDao>();
+builder.Services.AddScoped<ITodoDao,ToDoEfcDao2>();
 builder.Services.AddScoped<ITodoLogic, TodoLogic>();
-
+builder.Services.AddDbContext<TodoContext>();
 
 var app = builder.Build();
 
@@ -43,3 +45,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public class UserEfcDao
+{
+}
